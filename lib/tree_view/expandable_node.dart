@@ -65,7 +65,7 @@ class ExpandableNodeItem<D, T extends ITreeNode<D>> extends StatelessWidget {
 
 class _ExpandableNodeContainer<T> extends StatelessWidget {
   final Animation<double> animation;
-  final ValueSetter<ITreeNode<T>>? onTap;
+  final ValueSetter<T>? onTap;
   final ITreeNode<T> item;
   final ExpansionIndicator? expansionIndicator;
   final double indentPadding;
@@ -90,7 +90,7 @@ class _ExpandableNodeContainer<T> extends StatelessWidget {
       sizeFactor: CurvedAnimation(parent: animation, curve: Curves.easeOut),
       child: GestureDetector(
         behavior: HitTestBehavior.translucent,
-        onTap: onTap == null ? null : () => onTap!(item),
+        onTap: onTap == null ? null : () => onTap!(item.data!),
         child: Stack(
           children: <Widget>[
             Padding(
